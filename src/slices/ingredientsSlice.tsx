@@ -42,7 +42,7 @@ const ingredientsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    // Обработка получения ингредиентов
+      // Обработка получения ингредиентов
       .addCase(fetchIngredients.pending, (state) => {
         state.loading = true;
       })

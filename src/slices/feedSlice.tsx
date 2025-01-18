@@ -30,7 +30,7 @@ const feedSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    // Обработка получения данных ленты
+      // Обработка получения данных ленты
       .addCase(fetchFeed.pending, (state) => {
         state.loading = true;
       })

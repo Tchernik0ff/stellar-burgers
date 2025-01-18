@@ -30,7 +30,7 @@ const orderDataSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-    // Обработка получения данных заказа
+      // Обработка получения данных заказа
       .addCase(fetchOrderData.pending, (state) => {
         state.loading = true;
       })

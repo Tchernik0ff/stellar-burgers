@@ -99,7 +99,7 @@ const burgerSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    // Обработка создания нового заказа
+      // Обработка создания нового заказа
       .addCase(orderBurger.pending, (state) => {
         state.orderRequest = true;
       })
