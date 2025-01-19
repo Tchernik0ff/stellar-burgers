@@ -1,12 +1,11 @@
 import { ProfileUI } from '@ui-pages';
 import { FC, SyntheticEvent, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '../../services/store';
 import { getUser, getLoadingStatus, updateUser } from '../../slices/userSlice';
 import { Preloader } from '@ui';
-import { AppDispatch } from 'src/services/store';
 
 export const Profile: FC = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
   const user = useSelector(getUser);
   const loading = useSelector(getLoadingStatus);
 

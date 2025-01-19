@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { TConstructorIngredient } from '@utils-types';
-import { BurgerConstructorUI, Preloader } from '@ui';
-import { useDispatch, useSelector } from 'react-redux';
+import { BurgerConstructorUI } from '@ui';
+import { useSelector, useDispatch } from '../../services/store';
 import { getAuth } from '../../slices/userSlice';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -11,10 +11,9 @@ import {
   orderBurger,
   reset
 } from '../../slices/burgerConstructorSlice';
-import { AppDispatch } from 'src/services/store';
 
 export const BurgerConstructor: FC = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // Извлечение переменных из стора
   const constructorItems = useSelector(getConstructorItems);

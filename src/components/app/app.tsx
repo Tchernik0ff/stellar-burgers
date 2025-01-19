@@ -16,14 +16,13 @@ import { IngredientDetails } from '@components';
 import { useEffect } from 'react';
 import { fetchIngredients } from '../../slices/ingredientsSlice';
 import { fetchFeed } from '../../slices/feedSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from 'src/services/store';
+import { useDispatch, useSelector } from '../../services/store';
 import { getOrderNumber } from '../../slices/orderDataSlice';
 import { ProtectedRoute } from '../../services/protectedRoute';
 import { checkUserAuth } from '../../slices/userSlice';
 
 const App = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const closeModal = () => {

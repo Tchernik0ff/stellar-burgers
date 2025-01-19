@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router';
 import { getUser, getAuthChecked, getLogoutStatus } from '../slices/userSlice';
-import { useSelector } from 'react-redux';
+import { useSelector } from './store';
 import { Preloader } from '@ui';
 
 type ProtectedRouteProps = {
