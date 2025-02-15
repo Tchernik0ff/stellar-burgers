@@ -14,7 +14,7 @@ export const fetchOrderData = createAsyncThunk(
   }
 );
 
-export interface OrderDataState {
+interface OrderDataState {
   order: TOrder | undefined;
   loading: boolean;
 }
@@ -48,4 +48,5 @@ const orderDataSlice = createSlice({
 export const getOrder = (state: RootState) => state.order.order;
 export const getOrderNumber = (state: RootState) => state.order.order?.number;
 export const getLoadingState = (state: RootState) => state.order.loading;
+export { initialState };
 export default orderDataSlice.reducer;

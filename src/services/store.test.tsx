@@ -1,43 +1,9 @@
-import { rootReducer } from './store'
-
-const userInitialState = {
-  user: null,
-  loading: false,
-  error: undefined,
-  isAuthenticated: false,
-  isAuthChecked: false,
-  logoutRequest: false,
-  orders: []
-}
-
-const orderDataInitialState = {
-  order: undefined,
-  loading: false
-}
-
-const feedInitialState = {
-  orders: [],
-  feed: { total: 0, totalToday: 0 },
-  loading: false,
-}
-
-const burgerConstructorInitialState = {
-  constructorItems: {
-    bun: null,
-    ingredients: [],
-  },
-  orderRequest: false,
-  orderModalData: null,
-  loading: false,
-}
-
-const ingredientsInitialState = {
-  buns: [],
-  mains: [],
-  sauces: [],
-  ingredients: [],
-  loading: false
-}
+import { rootReducer } from './store';
+import { initialState as ingredientsInitialState} from '../slices/ingredientsSlice';
+import { initialState as userInitialState } from '../slices/userSlice';
+import { initialState as orderDataInitialState} from '../slices/orderDataSlice';
+import { initialState as feedInitialState} from '../slices/feedSlice';
+import { initialState as burgerConstructorInitialState} from '../slices/burgerConstructorSlice';
 
 describe('Store', () => {
   it('RootReducer должен корректно инициализироваться', () => {

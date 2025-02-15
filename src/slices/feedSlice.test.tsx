@@ -1,10 +1,4 @@
-import feedSliceReducer, { fetchFeed, getFeedLoadingState, getFeedOrders, getFeedStats } from './feedSlice'
-
-const initialState = {
-  orders: [],
-  feed: { total: 0, totalToday: 0 },
-  loading: false,
-}
+import feedSliceReducer, { fetchFeed, getFeedLoadingState, getFeedOrders, getFeedStats, initialState } from './feedSlice'
 
 const feedResponseMock = {
   success: true,

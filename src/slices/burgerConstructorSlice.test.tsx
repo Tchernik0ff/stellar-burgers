@@ -6,7 +6,7 @@ jest.mock('@reduxjs/toolkit', () => {
   };
 });
 
-import burgerSliceReducer, { moveIngridientDown, moveIngridientUp, orderBurger, removeIngredient, reset, setBun, setConstructorItems, setIngredient } from './burgerConstructorSlice';
+import burgerSliceReducer, { moveIngridientDown, moveIngridientUp, orderBurger, removeIngredient, reset, setBun, setConstructorItems, setIngredient, initialState } from './burgerConstructorSlice';
 import { TConstructorIngredient } from '@utils-types';
 
 const testIngredients: TConstructorIngredient[] = [
@@ -53,17 +53,6 @@ const testIngredients: TConstructorIngredient[] = [
     id: 'uniqueId3',
   },
 ];
-
-
-const initialState = {
-  constructorItems: {
-    bun: null,
-    ingredients: [],
-  },
-  orderRequest: false,
-  orderModalData: null,
-  loading: false,
-}
 
 const mockOrderResponse = {
   success: true,

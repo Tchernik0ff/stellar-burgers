@@ -1,7 +1,15 @@
+const modal = '.xqsNTMuGR8DdWtMkOGiM';
+
+const ulIngredientsList = '.TschaSuz4Fx6SIwt3Bs9';
+
+const constructorSelector = '.R0Ja10_UixREbmJ6qzGV';
+
+const listOfIndexes = [0, 1, 2]; // Индексы для теста
+
 // Логика добавления ингредиентов вынесена в отдельную функцию, для того чтобы избежать дублирования
 function addIngredients(listOfIndexes, customCallback?) {
   listOfIndexes.forEach((index) => {
-    cy.get('.TschaSuz4Fx6SIwt3Bs9')
+    cy.get(ulIngredientsList)
       .eq(index)
       .find('li')
       .eq(0)
@@ -17,7 +25,7 @@ function addIngredients(listOfIndexes, customCallback?) {
 
 // Закрытие модалки по кнопке/оверлею
 function closeModal(clickOutside = false) {
-  cy.get('.xqsNTMuGR8DdWtMkOGiM') // Находим модалку
+  cy.get(modal) // Находим модалку
       .find('div:nth-child(1) button') // Находим второй див с кнопкой
       .should('exist') // Должен существовать
       .click() // Кликаем
@@ -28,14 +36,12 @@ function closeModal(clickOutside = false) {
 
 // Функция открытия модалки
 function openModal() {
-  cy.get('.TschaSuz4Fx6SIwt3Bs9') // Находим ul с ингредиентами
+  cy.get(ulIngredientsList) // Находим ul с ингредиентами
       .should('exist') // Должны существовать
       .eq(0) // Выбираем первый ul
       .find('li') // Находим li
       .click() // Кликаем
 }
-
-const listOfIndexes = [0, 1, 2]; // Индексы для теста
 
 describe('Тестирование конструктора бургеров', function() {
   beforeEach(() => {
@@ -45,7 +51,7 @@ describe('Тестирование конструктора бургеров', f
         body: ingredients,
       }).as('getIngredients');
     });
-    cy.visit('http://localhost:4000');
+    cy.visit('/');
   });
   
   it('проверяет отображение моковых данных', function () {
@@ -59,7 +65,7 @@ describe('Тестирование конструктора бургеров', f
     ];
   
     expectedData.forEach(({ index, text }) => {
-      cy.get('.TschaSuz4Fx6SIwt3Bs9') // Находим списки ul
+      cy.get(ulIngredientsList) // Находим списки ul
         .eq(index) // Выбираем элемент по индексу
         .find('li')
         .eq(0)
@@ -71,14 +77,14 @@ describe('Тестирование конструктора бургеров', f
   it('Добавление ингредиентов в конструктор', function () {
     addIngredients(listOfIndexes, (index) => {
       if (index === 0) {
-        cy.get('.R0Ja10_UixREbmJ6qzGV .constructor-element_pos_top')
+        cy.get(`${constructorSelector} .constructor-element_pos_top`)
           .should('exist')
           .and('contain', 'testBun');
-        cy.get('.R0Ja10_UixREbmJ6qzGV .constructor-element_pos_bottom')
+        cy.get(`${constructorSelector} .constructor-element_pos_bottom`)
           .should('exist')
           .and('contain', 'testBun');
       } else {
-        cy.get('.R0Ja10_UixREbmJ6qzGV ul')
+        cy.get(`${constructorSelector} ul`)
           .should('exist')
           .and('contain', index === 1 ? 'testMain' : 'testSauce');
       }
@@ -87,20 +93,20 @@ describe('Тестирование конструктора бургеров', f
 
   it('Проверка модального окна ингредиента', function () {
     openModal() // Открываем модалку
-    cy.get('.xqsNTMuGR8DdWtMkOGiM') // Находим модалку
+    cy.get(modal) // Находим модалку
       .should('exist') // Должна существовать
   })
 
   it('Закрытие модального окна ингредиента по крестику', function () {
     openModal() // Открываем модалку
     closeModal(); // Закрываем модалку по кнопке
-    cy.get('.xqsNTMuGR8DdWtMkOGiM').should('not.exist') // Модалки не должно существовать
+    cy.get(modal).should('not.exist') // Модалки не должно существовать
   })
 
   it('Закрытие модального окна ингредиента по оверлею', function () {
     openModal() // Открываем модалку
     closeModal(true) // Закрываем модалку по оверлею
-    cy.get('.xqsNTMuGR8DdWtMkOGiM').should('not.exist') // Проверяем что модалки нет
+    cy.get(modal).should('not.exist') // Проверяем что модалки нет
   })
 });
 
@@ -136,7 +142,7 @@ describe('Тестирование получения данных пользо�
     });
 
     // Переходим на страницу приложения
-    cy.visit('http://localhost:4000');
+    cy.visit('/');
   });
 
   afterEach(() => {
@@ -158,23 +164,23 @@ describe('Тестирование получения данных пользо�
 
     // Собираем бургер
     addIngredients(listOfIndexes) // Добавляем ингридиенты
-    cy.get('.R0Ja10_UixREbmJ6qzGV') // Находим секцию с конструктором
+    cy.get(constructorSelector) // Находим секцию с конструктором
     .find('div:nth-child(4) button').click() // Находим и кликаем по кнопке оформления заказа
 
     cy.wait('@createOrder').then((interception) => {
-      cy.get('.xqsNTMuGR8DdWtMkOGiM').should('exist') // Проверяем открылась ли модалка
+      cy.get(modal).should('exist') // Проверяем открылась ли модалка
         .find('div:nth-child(2) h2') // Находим див с h2 номером заказа
         .should('have.text', '123456') // Проверяем что номер заказа соответствует
 
-      cy.get('.xqsNTMuGR8DdWtMkOGiM').find('div:nth-child(1) button') // Находим модалку и кнопку закрытия
+      cy.get(modal).find('div:nth-child(1) button') // Находим модалку и кнопку закрытия
         .click()
-      cy.get('.xqsNTMuGR8DdWtMkOGiM').should('not.exist') // Проверяем что модалка закрыта
+      cy.get(modal).should('not.exist') // Проверяем что модалка закрыта
       
       // Проверяем очищен ли конструктор
-      cy.get('.R0Ja10_UixREbmJ6qzGV .constructor-element_pos_top').should('not.exist')
-      cy.get('.R0Ja10_UixREbmJ6qzGV ul div').should('have.text', 'Выберите начинку')
-      cy.get('.R0Ja10_UixREbmJ6qzGV .constructor-element_pos_bottom').should('not.exist')
-      cy.get('.R0Ja10_UixREbmJ6qzGV').find('div:nth-child(4) div p.text').should('have.text', 0)
+      cy.get(`${constructorSelector} .constructor-element_pos_top`).should('not.exist')
+      cy.get(`${constructorSelector} ul div`).should('have.text', 'Выберите начинку')
+      cy.get(`${constructorSelector} .constructor-element_pos_bottom`).should('not.exist')
+      cy.get(constructorSelector).find('div:nth-child(4) div p.text').should('have.text', 0)
     })
   });
 });

@@ -1,12 +1,4 @@
-import ingredientSliceReducer, { fetchIngredients, getBuns, getIngLoadingStatus, getIngredients, getMains, getSauces, setBuns, setMains, setSauces } from './ingredientsSlice'
-
-const initialState = {
-  buns: [],
-  mains: [],
-  sauces: [],
-  ingredients: [],
-  loading: false
-}
+import ingredientSliceReducer, { fetchIngredients, getBuns, getIngLoadingStatus, getIngredients, getMains, getSauces, setBuns, setMains, setSauces, initialState } from './ingredientsSlice'
 
   const mockBun = [
     {

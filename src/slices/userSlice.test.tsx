@@ -1,15 +1,4 @@
-import userSliceReducer, { getAuth, getAuthChecked, getLoadingStatus, getLogoutStatus, getUser, getUserOrders, loginUser, logoutUser, registerUser, updateUser, userApi, userOrders } from './userSlice'
-
-const initialState = {
-  user: null,
-  loading: false,
-  error: undefined,
-  isAuthenticated: false,
-  isAuthChecked: false,
-  logoutRequest: false,
-  orders: []
-}
-
+import userSliceReducer, { getAuth, getAuthChecked, getLoadingStatus, getLogoutStatus, getUser, getUserOrders, loginUser, logoutUser, registerUser, updateUser, userApi, userOrders, initialState } from './userSlice'
 
 const stateUserIsLoggedIn = {
   user: {

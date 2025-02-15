@@ -1,10 +1,5 @@
 import { RootState } from 'src/services/store';
-import orderDataSliceReducer, { fetchOrderData, getLoadingState, getOrder, getOrderNumber } from './orderDataSlice'
-
-const initialState = {
-  order: undefined,
-  loading: false
-}
+import orderDataSliceReducer, { fetchOrderData, getLoadingState, getOrder, getOrderNumber, initialState } from './orderDataSlice'
 
 const testState: Partial<RootState> = {
   order: {

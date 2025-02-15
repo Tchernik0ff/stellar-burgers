@@ -131,5 +131,6 @@ export const {
   reset
 } = burgerSlice.actions;
 export default burgerSlice.reducer;
+export { initialState };
 export const { getConstructorItems, getOrderModalData, getOrderRequest } =
   burgerSlice.selectors;
