@@ -14,7 +14,7 @@ export const fetchOrderData = createAsyncThunk(
   }
 );
 
-interface OrderDataState {
+export interface OrderDataState {
   order: TOrder | undefined;
   loading: boolean;
 }

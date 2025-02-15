@@ -81,9 +81,10 @@ const burgerSlice = createSlice({
       }
     },
     moveIngridientDown(state, action) {
+      const ingredients = [...state.constructorItems.ingredients];
       const targetIndex = action.payload;
-      if (targetIndex >= 0) {
-        const ingredients = [...state.constructorItems.ingredients];
+      if (targetIndex >= 0 && ingredients.length - 1) {
+        // const ingredients = [...state.constructorItems.ingredients];
         const [ingredientToMove] = ingredients.splice(targetIndex, 1);
         ingredients.splice(targetIndex + 1, 0, ingredientToMove);
         return {
@@ -94,6 +95,7 @@ const burgerSlice = createSlice({
           }
         };
       }
+      return state;
     },
     reset: (state) => initialState
   },
