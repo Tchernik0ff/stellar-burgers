@@ -81,4 +81,5 @@ export const {
   getMains,
   getSauces
 } = ingredientsSlice.selectors;
+export { initialState };
 export default ingredientsSlice.reducer;

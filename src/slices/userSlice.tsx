@@ -200,4 +200,5 @@ export const {
   getLogoutStatus
 } = userSlice.selectors;
 export const { authCheсked } = userSlice.actions;
+export { initialState };
 export default userSlice.reducer;
